@@ -104,7 +104,21 @@ namespace TheSeriesAnalyzer
         /* הדפס תפריט */
         static void PrintMenu()
         {
-            // ...
+            StringBuilder sb = new();
+            sb.AppendLine("1) Input a Series. (Replace the current series)");
+            sb.AppendLine("2) Display the series in the order it was entered.");
+            sb.AppendLine("3) Display the series in the reversed order it was entered.");
+            sb.AppendLine("4) Display the series in sorted order (from low to high).");
+            sb.AppendLine("5) Display the Max value of the series.");
+            sb.AppendLine("6) Display the Min value of the series.");
+            sb.AppendLine("7) Display the Average of the series.");
+            sb.AppendLine("8) Display the Number of elements in the series.");
+            sb.AppendLine("9) Display the Sum of the series.");
+            sb.AppendLine("0) Exit.");
+
+            string menu = sb.ToString();
+
+            Console.WriteLine(menu);
         }
     }
 }
