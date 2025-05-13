@@ -14,6 +14,7 @@ namespace TheSeriesAnalyzer
 
             
             PrintSeries(GetSortedSeries(series));
+            Console.WriteLine(GetMaxValue(series));
             // PrintMenu();
         }
 
@@ -123,8 +124,15 @@ namespace TheSeriesAnalyzer
         /* קבל את המספר הגדול ביותר בסדרה */
         static float GetMaxValue(float[] series)
         {
-            // ...
-            return 0;
+            if (series.Length == 0)
+                return -1;
+
+            float max = series[0];
+            for (int i = 0; i < series.Length; i++)
+                if (series[i] > max)
+                    max = series[i];
+
+            return max;
         }
 
         /* קבל את המספר הקטן ביותר הסדרה */
