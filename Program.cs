@@ -108,10 +108,9 @@ namespace TheSeriesAnalyzer
         static float[] GetSortedSeries(float[] series)
         {
             float[] sortedSeries = series[..];
-
-            bool swapped = false;
             for (int i = 0; i < sortedSeries.Length - 1; i++)
             {
+                bool swapped = false;
                 for (int j = 0; j < sortedSeries.Length - i - 1; j++)
                     if (sortedSeries[j] > sortedSeries[j + 1]) {
                         (sortedSeries[j], sortedSeries[j + 1]) = (sortedSeries[j + 1], sortedSeries[j]);
