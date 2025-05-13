@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 
 namespace TheSeriesAnalyzer
@@ -7,73 +8,91 @@ namespace TheSeriesAnalyzer
     {
         static void Main(string[] args)
         {
-            int[] series = ParseSeriesFromArg(args);
+            float[] series = ParseSeriesFromArg(args);
             // if (series.Length < 3)
             //     series = ReadSeriesFromConsole();
-            
+
             // PrintMenu();
         }
 
-        /* לסדרה של מספרים שלמים חיוביים args הפוך את
+        /* לסדרה של מספרים חיוביים args הפוך את
          * (כולל טיפול בקלט לא תקין) */
-        static int[] ParseSeriesFromArg(string[] args)
+        static float[] ParseSeriesFromArg(string[] args)
         {
-            int[] series = new int[args.Length];
+            float[] series = new float[args.Length];
 
             for (int i = 0; i < args.Length; i++)
-                if (!int.TryParse(args[i], out series[i]) || series[i] < 0)
-                    series[i] = ReadPositiveIntFromConsole($"arg #{i + 1} is invalid. Please enter a new positive integer: ");
-                    
+                if (!float.TryParse(args[i], out series[i]) || series[i] < 0)
+                    series[i] = ReadPositiveFloatFromConsole($"arg #{i + 1} is invalid. Please enter a new positive number: ");
+
             return series;
         }
 
-        /* קבל סדרה של של מספרים שלמים חיוביים (לפחות 3) */
-        static int[] ReadSeriesFromConsole()
+        /* קבל סדרה של של מספרים חיוביים (לפחות 3) */
+        static float[] ReadSeriesFromConsole()
         {
             // ...
-            return [];
+            return new float[0];
         }
-        
-        /* קבל מספר שלם חיובי מהקונסול (כולל ולידציה) */
-        static int ReadPositiveIntFromConsole(string msgForUser = "Enter a positive integer: ")
+
+        static float ReadPositiveFloatFromConsole(string msgForUser = "Enter a positive number: ")
         {
-            int num;
+            float num = ReadFloatFromConsole(msgForUser);
+            while (num < 0)
+                num = ReadFloatFromConsole("Invalid input. Please enter a valid positive number: ", "");
+
+            return num;
+        }
+
+        /* קבל מספר מהקונסול (כולל ולידציה) */
+        static float ReadFloatFromConsole(string msgForUser = "Enter a number: ", string errMsg = "Invalid input. Please enter a valid number: ")
+        {
+            float num;
             Console.Write(msgForUser);
-            while (!int.TryParse(Console.ReadLine(), out num) || num < 0)
-                Console.Write("Invalid input. Please enter a valid positive integer: ");
+            while (
+                !float.TryParse(
+                    Console.ReadLine(),
+                    NumberStyles.Float, // For Ubuntu he-IL
+                    CultureInfo.InvariantCulture, // For Ubuntu he-IL
+                    out num
+                )
+            )
+                Console.Write(errMsg);
 
             return num;
         }
 
         /* הדפס סדרה ישר/הפוך */
-        static void PrintSeries(int[] series, bool revered = false)
+        static void PrintSeries(float[] series, bool revered = false)
         {
             // ...
         }
 
         /* קבל העתק ממוין של הסדרה */
-        static int[] GetSortedSeries(int[] series)
+        static float[] GetSortedSeries(float[] series)
         {
             // return copy ...
-            return [];
+            return new float[0];
         }
 
         /* קבל את המספר הגדול ביותר בסדרה */
-        static int GetMaxValue(int[] series)
+        static float GetMaxValue(float[] series)
         {
             // ...
             return 0;
         }
 
         /* קבל את המספר הקטן ביותר הסדרה */
-        static int GetMinValue(int[] series)
+        static float GetMinValue(float[] series)
         {
             // ...
+            if (series.Length < 0) return -1;
+
             return 0;
         }
 
         /* קבל את המספר ממוצע של הסדרה */
-        static int GetAverage(int[] series)
+        static float GetAverage(float[] series)
         {
             // ...
             return 0;
@@ -81,13 +100,13 @@ namespace TheSeriesAnalyzer
 
         /* קבל את גודל הסדרה */
         // פונקציה אולי מיותרת
-        static int GetSeriesLength(int[] series)
+        static float GetSeriesLength(float[] series)
         {
             return 0;
         }
 
         /* קבל את סכום הסדרה */
-        static int GetSeriesSum(int[] series)
+        static float GetSeriesSum(float[] series)
         {
             // ...
             return 0;
@@ -102,10 +121,10 @@ namespace TheSeriesAnalyzer
         }
 
         /* בצע פעולה מהתפריט */
-        static int[] HandleMenuOption(string menuOption)
+        static float[] HandleMenuOption(string menuOption)
         {
             // ...
-            return [];
+            return new float[0];
         }
 
         /* הדפס תפריט */
