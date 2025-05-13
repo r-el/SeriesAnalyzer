@@ -7,21 +7,23 @@ namespace TheSeriesAnalyzer
     {
         static void Main(string[] args)
         {
-            // ...
+            int[] series = ParseSeriesFromArg(args);
+            // if (series.Length < 3)
+            //     series = ReadSeriesFromConsole();
+            
+            // PrintMenu();
         }
 
         /* args-קבל סדרה של מספרים שלמים מ */
-        static int[] GetSeriesFromArgs(string args)
+        static int[] ParseSeriesFromArg(string[] args)
         {
-            // ...
-            return [];
-        }
+            int[] series = new int[args.Length];
 
-        /* בודק האם ארגומנט תקין (ניתן להמיר אותו למספר שלם) */
-        static bool IsValidArg(string arg)
-        {
-            // ...
-            return false;
+            for (int i = 0; i < args.Length; i++)
+                if (!int.TryParse(args[i], out series[i]))
+                    return [];
+
+            return series;
         }
 
         /* קבל סדרה של של מספרים שלמים (לפחות 3) */
