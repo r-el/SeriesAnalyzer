@@ -171,12 +171,10 @@ namespace TheSeriesAnalyzer
             return sum;
         }
 
-        /* בדוק האם מחרוזת תואמת לאחד מהאפשרויות בתפריט */
+        /* בדוק האם מחרוזת תואמת לאחד מהאפשרויות בתפריט (0-9) */
         static bool IsValidMenuOption(string menuOption)
-        // The answer should be displayed. 
         {
-            // ...
-            return false;
+            return menuOption.Length == 1 && menuOption[0] >= '0' && menuOption[0] <= '9';
         }
 
         /* בצע פעולה מהתפריט */
