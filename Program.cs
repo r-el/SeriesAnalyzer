@@ -153,15 +153,13 @@ namespace TheSeriesAnalyzer
         /* קבל את המספר ממוצע של הסדרה */
         static float GetAverage(float[] series)
         {
-            // ...
-            return 0;
-        }
+            if (series.Length == 0)
+                return 0;
 
-        /* קבל את גודל הסדרה */
-        // פונקציה אולי מיותרת
-        static float GetSeriesLength(float[] series)
-        {
-            return 0;
+            float sum = 0;
+            foreach (float num in series)
+                sum += num;
+            return sum / series.Length;
         }
 
         /* קבל את סכום הסדרה */
