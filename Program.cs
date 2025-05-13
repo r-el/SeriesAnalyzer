@@ -15,6 +15,7 @@ namespace TheSeriesAnalyzer
             
             PrintSeries(GetSortedSeries(series));
             Console.WriteLine(GetMaxValue(series));
+            Console.WriteLine(GetMinValue(series));
             // PrintMenu();
         }
 
@@ -138,10 +139,14 @@ namespace TheSeriesAnalyzer
         /* קבל את המספר הקטן ביותר הסדרה */
         static float GetMinValue(float[] series)
         {
-            // ...
-            if (series.Length < 0) return -1;
+            if (series.Length < 0)
+                return -1;
+            float min = series[0];
+            for (int i = 0; i < series.Length; i++)
+                if (series[i] < min)
+                    min = series[i];
 
-            return 0;
+            return min;
         }
 
         /* קבל את המספר ממוצע של הסדרה */
