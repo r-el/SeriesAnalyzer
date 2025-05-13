@@ -11,12 +11,6 @@ namespace TheSeriesAnalyzer
             float[] series = ParseSeriesFromArg(args);
             if (series.Length < 3)
                 series = ReadSeriesFromConsole();
-
-            
-            PrintSeries(GetSortedSeries(series));
-            Console.WriteLine(GetMaxValue(series));
-            Console.WriteLine(GetMinValue(series));
-            // PrintMenu();
         }
 
         /* לסדרה של מספרים חיוביים args הפוך את
@@ -178,10 +172,45 @@ namespace TheSeriesAnalyzer
         }
 
         /* בצע פעולה מהתפריט */
-        static float[] HandleMenuOption(string menuOption)
+        static void HandleMenuOption(string menuOption, ref float[] series)
         {
-            // ...
-            return new float[0];
+            switch (menuOption)
+            {
+                case "1":
+                    series = ReadSeriesFromConsole();
+                    Console.WriteLine("Series updated.");
+                    break;
+                case "2":
+                    Console.WriteLine("Series in original order:");
+                    PrintSeries(series);
+                    break;
+                case "3":
+                    Console.WriteLine("Series in reversed order:");
+                    PrintSeries(series, true);
+                    break;
+                case "4":
+                    Console.WriteLine("Series in sorted order:");
+                    PrintSeries(GetSortedSeries(series));
+                    break;
+                case "5":
+                    Console.WriteLine($"Max value: {GetMaxValue(series)}");
+                    break;
+                case "6":
+                    Console.WriteLine($"Min value: {GetMinValue(series)}");
+                    break;
+                case "7":
+                    Console.WriteLine($"Average: {GetAverage(series)}");
+                    break;
+                case "8":
+                    Console.WriteLine($"Number of elements: {series.Length}");
+                    break;
+                case "9":
+                    Console.WriteLine($"Sum: {GetSeriesSum(series)}");
+                    break;
+                default:
+                    Console.WriteLine("Unknown option.");
+                    break;
+            }
         }
 
         /* הדפס תפריט */
