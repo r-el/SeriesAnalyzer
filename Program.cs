@@ -12,7 +12,8 @@ namespace TheSeriesAnalyzer
             if (series.Length < 3)
                 series = ReadSeriesFromConsole();
 
-            PrintSeries(series);
+            
+            PrintSeries(GetSortedSeries(series));
             // PrintMenu();
         }
 
@@ -105,8 +106,19 @@ namespace TheSeriesAnalyzer
         /* קבל העתק ממוין של הסדרה */
         static float[] GetSortedSeries(float[] series)
         {
-            // return copy ...
-            return new float[0];
+            float[] sortedSeries = series[..];
+
+            bool swapped = false;
+            for (int i = 0; i < sortedSeries.Length - 1; i++)
+            {
+                for (int j = 0; j < sortedSeries.Length - i - 1; j++)
+                    if (sortedSeries[j] > sortedSeries[j + 1]) {
+                        (sortedSeries[j], sortedSeries[j + 1]) = (sortedSeries[j + 1], sortedSeries[j]);
+                        swapped = true;
+                    }
+                if (!swapped) break;
+            }
+            return sortedSeries;
         }
 
         /* קבל את המספר הגדול ביותר בסדרה */
