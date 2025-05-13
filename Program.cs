@@ -9,8 +9,8 @@ namespace TheSeriesAnalyzer
         static void Main(string[] args)
         {
             float[] series = ParseSeriesFromArg(args);
-            // if (series.Length < 3)
-            //     series = ReadSeriesFromConsole();
+            if (series.Length < 3)
+                series = ReadSeriesFromConsole();
 
             // PrintMenu();
         }
@@ -31,9 +31,31 @@ namespace TheSeriesAnalyzer
         /* קבל סדרה של של מספרים חיוביים (לפחות 3) */
         static float[] ReadSeriesFromConsole()
         {
-            // ...
-            return new float[0];
+            List<float> positiveNumbers = []; // C# 12+
+            Console.WriteLine("Enter at least 3 positive numbers.");
+
+            while (true)
+            {
+                float number = ReadFloatFromConsole($"#{positiveNumbers.Count + 1} Enter a positive number (or -1 to end): ");
+
+                if (number == -1.0f)
+                {
+                    if (positiveNumbers.Count >= 3)
+                        break;
+                    Console.WriteLine("You must enter at least 3 positive numbers before ending.");
+                    continue;
+                }
+
+                if (number > 0)
+                    positiveNumbers.Add(number);
+                else
+                    Console.WriteLine("Only positive numbers are allowed. Please try again.");
+            }
+
+            return [.. positiveNumbers];
         }
+
+        /* קבל מספר חיובי מהקונסול (כולל ולידציה) */
 
         static float ReadPositiveFloatFromConsole(string msgForUser = "Enter a positive number: ")
         {
