@@ -11,6 +11,25 @@ namespace TheSeriesAnalyzer
             float[] series = ParseSeriesFromArg(args);
             if (series.Length < 3)
                 series = ReadSeriesFromConsole();
+
+             while (true)
+            {
+                PrintMenu();
+                Console.Write("Choose an option (0-9): ");
+                string? menuOption = Console.ReadLine();
+                if (string.IsNullOrEmpty(menuOption) || !IsValidMenuOption(menuOption))
+                {
+                    Console.WriteLine("Invalid menu option. Please try again.\n");
+                    continue;
+                }
+                if (menuOption == "0")
+                {
+                    Console.WriteLine("Goodbye!");
+                    break;
+                }
+                HandleMenuOption(menuOption, ref series);
+                Console.WriteLine();
+            }
         }
 
         /* לסדרה של מספרים חיוביים args הפוך את
