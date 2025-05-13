@@ -14,15 +14,16 @@ namespace TheSeriesAnalyzer
             // PrintMenu();
         }
 
-        /* args-קבל סדרה של מספרים שלמים מ */
+        /* לסדרה של מספרים שלמים args הפוך את 
+         * (כולל טיפול בקלט לא תקין) */
         static int[] ParseSeriesFromArg(string[] args)
         {
             int[] series = new int[args.Length];
 
             for (int i = 0; i < args.Length; i++)
                 if (!int.TryParse(args[i], out series[i]))
-                    return [];
-
+                    series[i] = ReadIntFromConsole($"arg #{i + 1} is invalid. Please enter a new integer: ");
+                    
             return series;
         }
 
@@ -36,8 +37,12 @@ namespace TheSeriesAnalyzer
         /* קבל מספר שלם מהקונסול (כולל ולידציה) */
         static int ReadIntFromConsole(string msgForUser = "Enter an integer: ")
         {
-            // ...
-            return 0;
+            int num;
+            Console.Write(msgForUser);
+            while (!int.TryParse(Console.ReadLine(), out num))
+                Console.Write("Invalid input. Please enter a valid integer: ");
+
+            return num;
         }
 
         /* הדפס סדרה ישר/הפוך */
