@@ -14,33 +14,33 @@ namespace TheSeriesAnalyzer
             // PrintMenu();
         }
 
-        /* לסדרה של מספרים שלמים args הפוך את 
+        /* לסדרה של מספרים שלמים חיוביים args הפוך את
          * (כולל טיפול בקלט לא תקין) */
         static int[] ParseSeriesFromArg(string[] args)
         {
             int[] series = new int[args.Length];
 
             for (int i = 0; i < args.Length; i++)
-                if (!int.TryParse(args[i], out series[i]))
-                    series[i] = ReadIntFromConsole($"arg #{i + 1} is invalid. Please enter a new integer: ");
+                if (!int.TryParse(args[i], out series[i]) || series[i] < 0)
+                    series[i] = ReadPositiveIntFromConsole($"arg #{i + 1} is invalid. Please enter a new positive integer: ");
                     
             return series;
         }
 
-        /* קבל סדרה של של מספרים שלמים (לפחות 3) */
+        /* קבל סדרה של של מספרים שלמים חיוביים (לפחות 3) */
         static int[] ReadSeriesFromConsole()
         {
             // ...
             return [];
         }
         
-        /* קבל מספר שלם מהקונסול (כולל ולידציה) */
-        static int ReadIntFromConsole(string msgForUser = "Enter an integer: ")
+        /* קבל מספר שלם חיובי מהקונסול (כולל ולידציה) */
+        static int ReadPositiveIntFromConsole(string msgForUser = "Enter a positive integer: ")
         {
             int num;
             Console.Write(msgForUser);
-            while (!int.TryParse(Console.ReadLine(), out num))
-                Console.Write("Invalid input. Please enter a valid integer: ");
+            while (!int.TryParse(Console.ReadLine(), out num) || num < 0)
+                Console.Write("Invalid input. Please enter a valid positive integer: ");
 
             return num;
         }
