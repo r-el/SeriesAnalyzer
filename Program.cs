@@ -12,6 +12,7 @@ namespace TheSeriesAnalyzer
             if (series.Length < 3)
                 series = ReadSeriesFromConsole();
 
+            PrintSeries(series);
             // PrintMenu();
         }
 
@@ -87,7 +88,18 @@ namespace TheSeriesAnalyzer
         /* הדפס סדרה ישר/הפוך */
         static void PrintSeries(float[] series, bool revered = false)
         {
-            // ...
+            if (!revered)
+            {
+                for (int i = 0; i < series.Length; i++)
+                    Console.Write(series[i] + " ");
+                Console.WriteLine();
+            }
+            else
+            {
+                for (int i = series.Length - 1; i >= 0; i--)
+                    Console.Write(series[i] + " ");
+                Console.WriteLine();
+            }
         }
 
         /* קבל העתק ממוין של הסדרה */
