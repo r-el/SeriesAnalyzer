@@ -14,6 +14,7 @@ namespace TheSeriesAnalyzer
 
             
             PrintSeries(GetSortedSeries(series));
+            Console.WriteLine(GetMaxValue(series));
             // PrintMenu();
         }
 
